@@ -5,7 +5,26 @@
 
 import React from 'react';
 
-export const ViewCarRow = ( {carRow} ) => {
+// const person = {
+//     firstName: 'Bob',
+//     lastName: 'Smith',
+// }
+
+// const { firstName, lastName } = person;
+
+// const props = {
+//     carRow: whateverCar,
+//     onDeleteCar: () => {}
+// }
+
+// ViewCarRow(props);
+
+export const ViewCarRow = ( {carRow, onDeleteCar } ) => {
+
+    const deleteCar = () => {
+        onDeleteCar(carRow.id);
+    }
+
     return <tr>
         <td>{carRow.id}</td>
         <td>{carRow.make}</td>
@@ -13,5 +32,10 @@ export const ViewCarRow = ( {carRow} ) => {
         <td>{carRow.year}</td>
         <td>{carRow.color}</td>
         <td>{carRow.price}</td>
+        <td>
+            <div>
+                <button type="button" onClick={deleteCar}>Delete</button>
+            </div>
+        </td>
     </tr>
 }

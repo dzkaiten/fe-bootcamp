@@ -8,7 +8,6 @@ export class CarForm extends React.Component {
     };
 
     static propTypes = {
-        car: PropTypes.object,
         buttonText: PropTypes.string,
         onSubmitCar: PropTypes.func.isRequired,
     }
@@ -33,10 +32,17 @@ export class CarForm extends React.Component {
         })
     }
 
-
-    
     submitCar = () => {
-        this.props.onSubmitCar(this.state);
+        this.props.onSubmitCar({...this.state});
+        
+        // this.props.onSubmitCar({
+        //     make: this.state.make,
+        //     model: this.state.model,
+        //     year: this.state.year,
+        //     color: this.state.color,
+        //     price: this.state.price,
+        // })
+
         this.setState({
             make: '',
             model: '',
@@ -45,6 +51,10 @@ export class CarForm extends React.Component {
             price: 0
         });
     }
+
+    // deleteCar = () => {
+    //     this.props.onDeleteCar( blah );
+    // }
 
     render() {
         return <form>
