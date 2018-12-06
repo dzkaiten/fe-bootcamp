@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ViewCarRow } from './ViewCarRow';
+
 export const CarTable = ({ cars }) => {
     return <table>
         <thead>
@@ -13,16 +15,7 @@ export const CarTable = ({ cars }) => {
             </tr>
         </thead>
         <tbody>
-            {cars.map((car) =>
-                <tr key={car.id}>
-                    <td>{car.id}</td>
-                    <td>{car.make}</td>
-                    <td>{car.model}</td>
-                    <td>{car.year}</td>
-                    <td>{car.color}</td>
-                    <td>{car.price}</td>
-                </tr>
-            )}
+            {cars.map((car) => <ViewCarRow key={car.id} carRow={car}/>)}
         </tbody>
     </table>
 }
