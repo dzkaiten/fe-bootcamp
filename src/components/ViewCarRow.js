@@ -6,7 +6,7 @@
 import React from 'react';
 
 export const ViewCarRow = ( {carRow} ) => {
-    return <tr key={carRow.id}>
+    return <tr>
         <td>{carRow.id}</td>
         <td>{carRow.make}</td>
         <td>{carRow.model}</td>

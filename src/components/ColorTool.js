@@ -1,5 +1,7 @@
 import React from 'react';
 import { ToolHeader } from './ToolHeader'
+import { UnorderedList } from './UnorderedList'
+import { ColorForm } from './ColorForm';
 
 export class ColorTool extends React.Component {
 
@@ -8,39 +10,21 @@ export class ColorTool extends React.Component {
 
         this.state = {
             colors: props.colors.concat(),
-            newColor: '',
         };
     
     }
 
-    change = e => {
+    addColor = (newColor) => {
         this.setState({
-            [ e.target.name ]: e.target.value,
-        }, () => {
-            console.log(this.state);
-        });
-    };
-
-    addColor = () => {
-        this.setState({
-            colors: this.state.colors.concat(this.state.newColor),
-            newColor: '',
+            colors: this.state.colors.concat(newColor),
         })
     }
 
     render() {
         return <>
             <ToolHeader headerText="Color Tewl"/>
-            <ul>
-                {this.state.colors.map((color, index) => <li key={index}>{color}</li>)}
-            </ul>
-            <form>
-                <div>
-                    <label htmlFor="new-color-input">New Color:</label>
-                    <input type="text" id="new-color-input" name="newColor" value={this.state.newColor} onChange={this.change} />
-                </div>
-                <button type="button" onClick={this.addColor}>Add Color</button>
-            </form>
+            <UnorderedList items={this.state.colors}/>
+            <ColorForm buttonText="Add Color" onSubmitColor={this.addColor}/>
         </>;
     }
 }
