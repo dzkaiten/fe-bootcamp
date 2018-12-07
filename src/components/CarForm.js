@@ -52,10 +52,6 @@ export class CarForm extends React.Component {
         });
     }
 
-    // deleteCar = () => {
-    //     this.props.onDeleteCar( blah );
-    // }
-
     render() {
         return <form>
         <div>
