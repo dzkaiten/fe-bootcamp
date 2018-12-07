@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, bindActionCreators } from 'redux';
+import { connect, Provider } from 'react-redux';
 
 import { CalcTool } from './components/CalcTool';
 
@@ -40,26 +42,26 @@ const calcReducer = (state = 0, action) => {
     }
 };
 
-const createStore = (reducer) => {
+// const createStore = (reducer) => {
 
-    let currentState;
-    const subscribers = [];
+//     let currentState;
+//     const subscribers = [];
 
-    return {
-        getState: () => currentState,
-        dispatch: action => {
-            currentState = reducer(currentState, action);
-            subscribers.forEach(cbFn => cbFn());
-        },
-        subscribe: cbFn => {
-            subscribers.push(cbFn);
-            return () => {
-                const cbFnIndex = subscribers.indexOf(cbFn);
-                subscribers.splice(cbFnIndex, 1);
-            }
-        }
-    }
-};
+//     return {
+//         getState: () => currentState,
+//         dispatch: action => {
+//             currentState = reducer(currentState, action);
+//             subscribers.forEach(cbFn => cbFn());
+//         },
+//         subscribe: cbFn => {
+//             subscribers.push(cbFn);
+//             return () => {
+//                 const cbFnIndex = subscribers.indexOf(cbFn);
+//                 subscribers.splice(cbFnIndex, 1);
+//             }
+//         }
+//     }
+// };
 
 const calcStore = createStore(calcReducer);
 
@@ -72,14 +74,14 @@ const calcStore = createStore(calcReducer);
 // const multiply = value => calcStore.dispatch(createMultiplyAction(value));
 // const divide = value => calcStore.dispatch(createDivideAction(value));
 
-const bindActionCreators = (actions, dispatch) => {
-    return Object.keys(actions).reduce( (boundActions, actionKey) => {
+// const bindActionCreators = (actions, dispatch) => {
+//     return Object.keys(actions).reduce( (boundActions, actionKey) => {
 
-        boundActions[actionKey] = (...params) => dispatch(actions[actionKey](...params));
-        return boundActions;
+//         boundActions[actionKey] = (...params) => dispatch(actions[actionKey](...params));
+//         return boundActions;
 
-    }, {})
-};
+//     }, {})
+// };
 
 // const { add, subtract, multiply, divide } = bindActionCreators({
 //     add: createAddAction,
@@ -88,32 +90,36 @@ const bindActionCreators = (actions, dispatch) => {
 //     divide: createDivideAction,
 // }, calcStore.dispatch);
 
-const connect = (mapStateToPropsFn, mapDispatchtoPropsFn) => {
+// const { Provider, Consumer } = React.createContext(null);
+
+// const connect = (mapStateToPropsFn, mapDispatchtoPropsFn) => {
     
-    return (PresentationalComponent) => {
-        return class ContainerComponent extends React.Component {
+//     return (PresentationalComponent) => {
+//         class ContainerComponent extends React.Component {
 
-            componentDidMount() {
-                this.dispatchProps = mapDispatchtoPropsFn(this.props.store.dispatch);
+//             componentDidMount() {
+//                 this.dispatchProps = mapDispatchtoPropsFn(this.props.store.dispatch);
 
-                // every you subsribe to a store you give it a callback function, which is added to the array subscribers
-                // then when the state changes, you can iterate over subscribers (array of functions) to let them know 
-                // there's new data by calling the callback function
-                this.unsubscribeFn = this.props.store.subscribe(() => {
-                    this.forceUpdate();
-                })
-            }
+//                 // every you subsribe to a store you give it a callback function, which is added to the array subscribers
+//                 // then when the state changes, you can iterate over subscribers (array of functions) to let them know 
+//                 // there's new data by calling the callback function
+//                 this.unsubscribeFn = this.props.store.subscribe(() => {
+//                     this.forceUpdate();
+//                 })
+//             }
 
-            componentWillUnmount() {
-                this.unsubscribeFn();
-            }
+//             componentWillUnmount() {
+//                 this.unsubscribeFn();
+//             }
 
-            render() {
-                return <PresentationalComponent {...this.dispatchProps} {...mapStateToPropsFn(this.props.store.getState())} />;
-            }
-        }
-    }
-}
+//             render() {
+//                 return <PresentationalComponent {...this.dispatchProps} {...mapStateToPropsFn(this.props.store.getState())} />;
+//             }
+//         }
+
+//         return () => <Consumer>{value => <ContainerComponent store={value}/>}</Consumer>
+//     }
+// }
 
 const CalcToolContainer = connect(
     (state) => ({ result: state }),     // mapStateToPropsFn
@@ -126,7 +132,9 @@ const CalcToolContainer = connect(
 )(CalcTool);
 
 ReactDOM.render(
-    <CalcToolContainer store={calcStore} />, 
+    <Provider store={calcStore}>
+        <CalcToolContainer />
+    </Provider>,
     document.querySelector('#root'));
 
-calcStore.dispatch({ type: 'INIT' })
+// calcStore.dispatch({ type: 'INIT' })
