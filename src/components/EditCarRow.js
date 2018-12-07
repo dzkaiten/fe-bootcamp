@@ -23,6 +23,13 @@ export class EditCarRow extends React.Component {
         })
     }
 
+    saveCar = () => {
+        this.props.onSaveCar({
+            ...this.state,
+            id: this.props.carRow.id,
+        })
+    }
+
     render() {
         return <tr>
             <td>{this.state.id}</td>
@@ -32,10 +39,8 @@ export class EditCarRow extends React.Component {
             <td><input type="text" id="edit-color" name="color" value={this.state.color} onChange={this.change}/></td>
             <td><input type="number" id="edit-price" name="price" value={this.state.price} onChange={this.change}/></td>
             <td>
-                {/* <button type="button" onClick={() => onEditSave(this.state.id)}>Save</button> */}
-                <button type="button">Save</button>
-                {/* <button type="button" onClick={() => onEditCancel(this.state.id)}>Cancel</button> */}
-                <button type="button">Cancel</button>
+                <button type="button" onClick={this.saveCar}>Save</button>
+                <button type="button" onClick={this.props.onCancelCar}>Cancel</button>
             </td>
         </tr>
     }

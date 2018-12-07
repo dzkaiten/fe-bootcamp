@@ -12,7 +12,7 @@ export class CarTool extends React.Component {
 
         this.state = {
             cars: props.cars.concat(),
-            editId: 0, 
+            editId: -1, 
         }
     }
 
@@ -33,21 +33,44 @@ export class CarTool extends React.Component {
     editCar = (index) => {
         // change to an EditCarRow ??
         console.log('Editing car ', index);
-        this.setState({editId: index});
+        this.setState({
+            editId: index
+        });
         console.log('this.state in CarTool',this.state);
         
     }
 
     deleteCar = (index) => {
         this.setState({
-            cars: this.state.cars.filter(c => c.id !== index)
+            cars: this.state.cars.filter(c => c.id !== index),
+            editId: -1,
         })
+    }
+
+    replaceCar = (car) => {
+        const newCars = this.state.cars.concat();
+        const carIndex = this.state.cars.findIndex(c => c.id === car.id);
+        newCars[carIndex] = car;
+
+        this.setState({
+            cars: newCars,
+            editId: -1,
+        })
+
+    }
+
+    cancelCar = () => {
+        this.setState({
+            editId: -1
+        });
     }
 
     render() {
         return <>
             <ToolHeader headerText="Car T00L" />
-            <CarTable cars={this.state.cars} editId={this.state.editId} onEditCar={this.editCar} onDeleteCar={this.deleteCar}/>
+            <CarTable cars={this.state.cars} editId={this.state.editId} 
+                onEditCar={this.editCar} onDeleteCar={this.deleteCar}
+                onSaveCar={this.replaceCar} onCancelCar={this.cancelCar}/>
             <CarForm buttonText="Add Car" onSubmitCar={this.addCar}/>
         </>;
     }
