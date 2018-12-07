@@ -19,11 +19,11 @@ import React from 'react';
 
 // ViewCarRow(props);
 
-export const ViewCarRow = ( {carRow, onDeleteCar } ) => {
+export const ViewCarRow = ({ carRow, onEditCar, onDeleteCar }) => {
 
-    const deleteCar = () => {
-        onDeleteCar(carRow.id);
-    }
+    // const deleteCar = () => {
+    //     onDeleteCar(carRow.id);
+    // }
 
     return <tr>
         <td>{carRow.id}</td>
@@ -33,9 +33,8 @@ export const ViewCarRow = ( {carRow, onDeleteCar } ) => {
         <td>{carRow.color}</td>
         <td>{carRow.price}</td>
         <td>
-            <div>
-                <button type="button" onClick={deleteCar}>Delete</button>
-            </div>
+            <button type="button" onClick={() => onEditCar(carRow.id)}>Edit</button>
+            <button type="button" onClick={() => onDeleteCar(carRow.id)}>Delete</button>
         </td>
     </tr>
 }

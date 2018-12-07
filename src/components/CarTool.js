@@ -12,6 +12,7 @@ export class CarTool extends React.Component {
 
         this.state = {
             cars: props.cars.concat(),
+            editId: 0, 
         }
     }
 
@@ -29,18 +30,24 @@ export class CarTool extends React.Component {
         })
     }
 
+    editCar = (index) => {
+        // change to an EditCarRow ??
+        console.log('Editing car ', index);
+        this.setState({editId: index});
+        console.log('this.state in CarTool',this.state);
+        
+    }
+
     deleteCar = (index) => {
         this.setState({
             cars: this.state.cars.filter(c => c.id !== index)
         })
-
-        console.log('deleteCar inside CarTool.js')
     }
 
     render() {
         return <>
             <ToolHeader headerText="Car T00L" />
-            <CarTable cars={this.state.cars} onDeleteCar={this.deleteCar}/>
+            <CarTable cars={this.state.cars} editId={this.state.editId} onEditCar={this.editCar} onDeleteCar={this.deleteCar}/>
             <CarForm buttonText="Add Car" onSubmitCar={this.addCar}/>
         </>;
     }
