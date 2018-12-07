@@ -80,9 +80,29 @@ calcStore.subscribe( () => {
 // ReactDOM.render(<h1>Test2</h1>, document.querySelector('#root'));
 
 
-const add = value => calcStore.dispatch(createAddAction(value));
-const subtract = value => calcStore.dispatch(createSubtractAction(value));
-const multiply = value => calcStore.dispatch(createMultiplyAction(value));
-const divide = value => calcStore.dispatch(createDivideAction(value));
+// const add = (value) => {
+//     calcStore.dispatch(createAddAction(value));
+// };
+
+// const add = value => calcStore.dispatch(createAddAction(value)); // purpose is to dispatch an action
+// const subtract = value => calcStore.dispatch(createSubtractAction(value));
+// const multiply = value => calcStore.dispatch(createMultiplyAction(value));
+// const divide = value => calcStore.dispatch(createDivideAction(value));
+
+const bindActionCreators = (actions, dispatch) => {
+    return Object.keys(actions).reduce( (boundActions, actionKey) => {
+
+        boundActions[actionKey] = (...params) => dispatch(actions[actionKey](...params));
+        return boundActions;
+
+    }, {})
+};
+
+const { add, subtract, multiply, divide } = bindActionCreators({
+    add: createAddAction,
+    subtract: createSubtractAction,
+    multiply: createMultiplyAction,
+    divide: createDivideAction,
+}, calcStore.dispatch);
 
 calcStore.dispatch({ type: 'INIT' })

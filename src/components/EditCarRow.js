@@ -44,7 +44,4 @@ export class EditCarRow extends React.Component {
             </td>
         </tr>
     }
-
 }
-
-// = ({ carRow, onEditCar }) => {
