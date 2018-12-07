@@ -63,30 +63,6 @@ const createStore = (reducer) => {
 
 const calcStore = createStore(calcReducer);
 
-// every you subsribe to a store you give it a callback function, which is added to the array subscribers
-// then when the state changes, you can iterate over subscribers (array of functions) to let them know 
-// there's new data by calling the callback function
-
-// calcStore.subscribe( () => {
-//     console.log('state changed', calcStore.getState()); // get the updated state
-//     ReactDOM.render(
-//         <CalcTool result={calcStore.getState()} add={add} subtract={subtract} multiply={multiply} divide={divide}/>, 
-//         document.querySelector('#root'));
-// } );
-
-// calcStore.dispatch( createAddAction(1) );
-// calcStore.dispatch( createSubtractAction(2) );
-// calcStore.dispatch( createAddAction(3) );
-// calcStore.dispatch( createSubtractAction(4) );
-// calcStore.dispatch( createAddAction(5) );
-// calcStore.dispatch( createMultiplyAction(2) );
-// calcStore.dispatch( createDivideAction(3) );
-
-// nothing specifically to do with Redux, but you will use this logic with Redux
-// ReactDOM.render(<h1>Test</h1>, document.querySelector('#root'));
-// ReactDOM.render(<h1>Test2</h1>, document.querySelector('#root'));
-
-
 // const add = (value) => {
 //     calcStore.dispatch(createAddAction(value));
 // };
@@ -105,12 +81,12 @@ const bindActionCreators = (actions, dispatch) => {
     }, {})
 };
 
-const { add, subtract, multiply, divide } = bindActionCreators({
-    add: createAddAction,
-    subtract: createSubtractAction,
-    multiply: createMultiplyAction,
-    divide: createDivideAction,
-}, calcStore.dispatch);
+// const { add, subtract, multiply, divide } = bindActionCreators({
+//     add: createAddAction,
+//     subtract: createSubtractAction,
+//     multiply: createMultiplyAction,
+//     divide: createDivideAction,
+// }, calcStore.dispatch);
 
 const connect = (mapStateToPropsFn, mapDispatchtoPropsFn) => {
     
@@ -119,6 +95,10 @@ const connect = (mapStateToPropsFn, mapDispatchtoPropsFn) => {
 
             componentDidMount() {
                 this.dispatchProps = mapDispatchtoPropsFn(this.props.store.dispatch);
+
+                // every you subsribe to a store you give it a callback function, which is added to the array subscribers
+                // then when the state changes, you can iterate over subscribers (array of functions) to let them know 
+                // there's new data by calling the callback function
                 this.unsubscribeFn = this.props.store.subscribe(() => {
                     this.forceUpdate();
                 })
@@ -136,8 +116,8 @@ const connect = (mapStateToPropsFn, mapDispatchtoPropsFn) => {
 }
 
 const CalcToolContainer = connect(
-    (state) => ({ result: state }), // mapStateToPropsFn
-    (dispatch) => bindActionCreators({ // mapDispatchToPropsFn
+    (state) => ({ result: state }),     // mapStateToPropsFn
+    (dispatch) => bindActionCreators({  // mapDispatchToPropsFn
         add: createAddAction, 
         subtract: createSubtractAction,
         multiply: createMultiplyAction, 
