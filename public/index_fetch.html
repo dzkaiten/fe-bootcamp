@@ -38,9 +38,27 @@
     -->
     <script>
       'use strict';
-      fetch('http://localhost:3050/people')
+      
+      // Get All - GET collection URL
+      fetch('http://localhost:3050/cars')
         .then(res => res.json())
-        .then(people => console.log(people));
+        .then(cars => console.log(cars));
+
+      // Insert - POST collection URL + request body
+      fetch('http://localhost:3050/cars', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          make: 'Tesla',
+          model: 'S',
+          year: 2018,
+          color: 'Silver',
+          price: 30000,
+        })
+      })
+        .then(res => res.json())
+        .then(cars => console.log(cars));
+        
     </script>
 
   </body>

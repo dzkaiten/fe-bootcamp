@@ -38,9 +38,65 @@
     -->
     <script>
       'use strict';
-      fetch('http://localhost:3050/people')
-        .then(res => res.json())
-        .then(people => console.log(people));
+      
+      /**
+       * Frame Diagram
+       */     
+
+      // function outer() {
+      //   let t = 2;
+
+      //   setTimeout(() => {
+      //     t = 4;
+      //   }, 2000);
+
+      //   return function inner() {
+      //     console.log(t);
+      //   }
+      // }
+
+      // const innerFn = outer();
+      // innerFn();
+
+      // setTimeout(() => {
+      //   innerFn();
+      // }, 4000);
+      // // console.dir(innerFn);
+
+      function allDone() {
+        console.log('all done');
+      }
+
+      let counter = 0;
+      counter++;
+      setTimeout(() => {
+        console.log('a');
+        counter--;
+
+        if (counter === 0) {
+          allDone();
+        }
+      }, 2000);
+
+      counter++;
+      setTimeout(() => {
+        console.log('b');
+        counter--;
+
+        if (counter === 0) {
+          allDone();
+        }
+      }, 500);
+
+      counter++;
+      setTimeout(() => {
+        console.log('c');
+        counter--;
+
+        if (counter === 0) {
+          allDone();
+        }
+      }, 1000);
     </script>
 
   </body>

@@ -38,9 +38,44 @@
     -->
     <script>
       'use strict';
-      fetch('http://localhost:3050/people')
-        .then(res => res.json())
-        .then(people => console.log(people));
+      const youngMan = new Promise(function youngLady(resolve, reject) {
+        setTimeout(() => {
+          console.log('she said yes to the dress!');
+          resolve('she luvs him');
+        }, 2000)
+      });
+
+      youngMan
+        .then((result) => {
+          console.log('yay she said yes!');
+          console.log(result);
+
+          console.log('go find a place to get married...');
+          return new Promise( (resolve, reject) => {
+            setTimeout(() => {
+              reject('couldnt find a place to get married..');
+            }, 2000);
+          });
+        })
+        .then(result => {
+          console.log(result);
+          console.log('go find some wedding clothes');
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve('found some wedding clothes..');
+            }, 2000);
+          })
+        
+        })
+        .then(result => {
+          console.log(result);
+        })
+        .catch( (result) => {
+          console.log(result);
+          console.log('she said no, time for tinder lol');
+        });
+
+      console.log('young man is waiting...');
     </script>
 
   </body>

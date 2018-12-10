@@ -67,7 +67,7 @@ export class CarTool extends React.Component {
 
     render() {
         return <>
-            <ToolHeader headerText="Car T00L" />
+            <ToolHeader headerText="Car Tool" />
             <CarTable cars={this.props.cars} editId={this.props.editId} 
                 onEditCar={this.props.editCar} onDeleteCar={this.props.deleteCar}
                 onSaveCar={this.props.replaceCar} onCancelCar={this.props.cancelCar}/>

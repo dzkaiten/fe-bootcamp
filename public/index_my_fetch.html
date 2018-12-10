@@ -38,9 +38,22 @@
     -->
     <script>
       'use strict';
-      fetch('http://localhost:3050/people')
-        .then(res => res.json())
-        .then(people => console.log(people));
+      
+      const myFetch = url => {
+        return new Promise(resolve => {
+          const xhr = new XMLHttpRequest();
+          xhr.addEventListener('readystatechange', () => {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+              resolve((JSON.parse(xhr.responseText)));
+            }
+          });
+          xhr.open('GET', url);
+          xhr.send();
+        });
+      };
+
+      myFetch('http://localhost:3050/cars').then(cars => console.log(cars));
+
     </script>
 
   </body>

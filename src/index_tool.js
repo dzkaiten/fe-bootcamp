@@ -6,13 +6,14 @@ import './index.css';
 
 // import { HelloWorld } from './components/HelloWorld';
 // import { ColorTool } from './components/ColorTool';
-// const colorList = ['purple', 'blue', 'green', 'red', 'teal', 'gold']
-
 import { CarToolContainer } from './containers/CarToolContainer';
 import { carToolStore } from './carToolStore';
-import { PersonForm } from './components/PersonForm';
 
-ReactDOM.render(
-    <PersonForm />,
+// const colorList = ['purple', 'blue', 'green', 'red', 'teal', 'gold']
+
+ReactDOM.render( 
+    <Provider store={carToolStore}>
+        <CarToolContainer />
+    </Provider>,
     document.querySelector('#root'),
 );
