@@ -5,6 +5,7 @@ export const createRefreshCarsRequestAction = () => ({ type: REFRESH_CARS_REQUES
 export const createRefreshCarsDoneAction = (cars) => ({ type: REFRESH_CARS_DONE, payload: cars });
 
 export const refreshCars = () => {
+    console.log('refreshed cars!');
     return dispatch => {
         // Dispatch request action
         dispatch(createRefreshCarsRequestAction());
