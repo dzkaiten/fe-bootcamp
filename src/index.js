@@ -1,26 +1,45 @@
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+const Home = () => <h1>Home</h1>;
 
-// import { HelloWorld } from './components/HelloWorld';
-// import { ColorTool } from './components/ColorTool';
-// const colorList = ['purple', 'blue', 'green', 'red', 'teal', 'gold']
+// const About = (props) => <div>
+//     <h1>About {props.test}</h1>;
+//     {props.children()}
+// </div>
 
-import { CarToolContainer } from './containers/CarToolContainer';
-import { carToolStore } from './carToolStore';
+// match and history are props from Router API
+const About = ({ match, history }) => <>
+    <h1>About: {match.params.id}</h1>
+    <button onClick={() => history.push('/')}>Home</button>
+</>;
 
-// import { PersonForm } from './components/PersonForm';
+const Contact = () => <h1>Contact</h1>
 
-ReactDOM.render( 
-    <Provider store={carToolStore}>
-        <CarToolContainer />
-    </Provider>,
-    document.querySelector('#root'),
-);
+const App = () => {
 
-// ReactDOM.render(
-//     <PersonForm />,
-//     document.querySelector('#root'),
-// );
+ return <>
+   <header>Header</header>
+   <nav>
+     <ul>
+       <li><Link to="/">Home</Link></li>
+       <li><Link to="/about/2">About</Link></li>
+       <li><Link to="/contact">Contact</Link></li>
+     </ul>
+   </nav>
+   <main>
+     <Route path="/" exact component={Home} />
+     <Route path="/about/:id" component={About} />
+     <Route path="/contact" component={Contact} />
+
+   </main>
+   <footer>Footer</footer>
+</>
+}
+
+//<Route path="/about" render={() => <About test="2">{() => <h2>Cool</h2>}</About>} />
+
+ReactDOM.render(<Router>
+    <App />
+</Router>, document.querySelector('#root'));

@@ -3,8 +3,8 @@ import { refreshCars } from './refreshCars'
 export const REPLACE_CAR_REQUEST = 'REPLACE_CAR_REQUEST';
 export const REPLACE_CAR_DONE = 'REPLACE_CAR_DONE';
 
-// export const createReplaceCarRequestAction = (car, carId) => ({ type: REPLACE_CAR_REQUEST, payload: { car, carId } });
-export const createReplaceCarRequestAction = (car) => ({ type: REPLACE_CAR_REQUEST, payload: car });
+export const createReplaceCarRequestAction = (car, carId) => ({ type: REPLACE_CAR_REQUEST, payload: { car: car, editId: carId } });
+// export const createReplaceCarRequestAction = (car) => ({ type: REPLACE_CAR_REQUEST, payload: car });
 export const createReplaceCarDoneAction = () => ({ type: REPLACE_CAR_DONE });
 
 export const replaceCar = (car) => {
