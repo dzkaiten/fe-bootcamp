@@ -65,6 +65,10 @@ export class CarTool extends React.Component {
     //     });
     // }
 
+    componentDidMount() {
+        this.props.refreshCars();
+    }
+
     render() {
         return <>
             <ToolHeader headerText="Car Tool" />

@@ -1,9 +1,140 @@
 {
-  "people": [
+  "cars": [
     {
       "id": 1,
-      "firstName": "Daniel",
-      "lastName": "Zhang"
+      "make": "Audi",
+      "model": "A4",
+      "year": 2002,
+      "color": "Black",
+      "price": 7000
+    },
+    {
+      "id": 2,
+      "make": "BMW",
+      "model": "335i",
+      "year": 2015,
+      "color": "White",
+      "price": 30000
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 3
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 4
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 5
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 6
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 7
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 8
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 9
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 10
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 11
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 12
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 13
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 14
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 15
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 16
+    },
+    {
+      "make": "Tesla",
+      "model": "S",
+      "year": 2018,
+      "color": "Silver",
+      "price": 30000,
+      "id": 17
     }
   ]
 }

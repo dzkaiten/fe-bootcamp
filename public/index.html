@@ -37,10 +37,39 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      'use strict';
-      fetch('http://localhost:3050/people')
-        .then(res => res.json())
-        .then(people => console.log(people));
+      // 'use strict';
+
+      // const getAll = () => {
+      //   return fetch('http://localhost:3050/cars')
+      //     .then(res => res.json);
+      // }
+
+      // const getAll = async () => {
+      //   const res = await fetch('http://localhost:3050/cars');
+      //   const cars = await res.json();
+      //   return cars;
+      // }
+
+      // const doOp = async (person) => {
+
+      //   try {
+      //     const personAppendRes = await fetch('...add op');
+      //     const person = await personAppendRes.json();
+
+      //     const personAllRes = await fetch('all op');
+      //     const personAll = await personAllRes.json();
+
+      //     console.log(personAll);
+
+      //     return await fetch('delete op/' + person.id);
+      //   }
+      //   catch(err) {
+      //     // handle error
+      //   }
+      // }
+
+      // doOp().then(() => null);
+
     </script>
 
   </body>

@@ -1,12 +1,23 @@
 import { ADD_CAR, REPLACE_CAR, DELETE_CAR, EDIT_CAR, CANCEL_CAR } from '../actions/carToolActions';
+import { REFRESH_CARS_REQUEST, REFRESH_CARS_DONE } from '../actions/refreshCars';
 
-const cars = [
-    { id: 1, make: 'Audi', model: 'A4', year: 2002, color: 'Black', price: 7000 },
-    { id: 2, make: 'BMW', model: '335i', year: 2015, color: 'White', price: 30000 }
-];
+// const cars = [
+//     { id: 1, make: 'Audi', model: 'A4', year: 2002, color: 'Black', price: 7000 },
+//     { id: 2, make: 'BMW', model: '335i', year: 2015, color: 'White', price: 30000 }
+// ];
 
-export const carToolReducer = (state = { cars, editCarId: -1 }, action) => {
+export const carToolReducer = (state = { cars: [], editCarId: -1 }, action) => {
     switch (action.type) {
+        case REFRESH_CARS_REQUEST:
+            return {
+                ...state, 
+                loading: true 
+            }
+        case REFRESH_CARS_DONE:
+            return {...state, 
+                loading: false, 
+                cars: action.payload 
+            }
         case ADD_CAR:
             return { 
                 ...state, 
