@@ -8,7 +8,7 @@ import { REPLACE_CAR_REQUEST, REPLACE_CAR_DONE } from '../actions/replaceCar';
 //     { id: 2, make: 'BMW', model: '335i', year: 2015, color: 'White', price: 30000 }
 // ];
 
-export const carToolReducer = (state = { cars: [], editCarId: -1 }, action) => {
+export const carToolReducer = (state = { cars: [], editId: -1 }, action) => {
     switch (action.type) {
         case REFRESH_CARS_REQUEST:
             return { ...state, 
@@ -25,11 +25,12 @@ export const carToolReducer = (state = { cars: [], editCarId: -1 }, action) => {
             }
         case REPLACE_CAR_REQUEST:
             return {...state,
-                loading: true
+                loading: true,
             }
         case REPLACE_CAR_DONE:
             return {...state,
                 loading: false,
+                editId: -1,
             }
       
         // case ADD_CAR:
